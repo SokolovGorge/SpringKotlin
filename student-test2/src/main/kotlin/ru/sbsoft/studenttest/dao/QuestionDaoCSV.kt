@@ -5,11 +5,14 @@ import com.opencsv.CSVReaderBuilder
 import org.springframework.stereotype.Component
 import ru.sbsoft.studenttest.config.QuestionStorageConfig
 import ru.sbsoft.studenttest.domain.Question
+import ru.sbsoft.studenttest.stereotype.LogEnable
 import java.io.InputStreamReader
 
 @Component
 class QuestionDaoCSV(private val storageConfig: QuestionStorageConfig,
     private val questionBuilder: QuestionBuilder): QuestionDao {
+
+    @LogEnable
     override fun readQuestions(): List<Question> {
         val parser = CSVParserBuilder().withSeparator(';').build()
         InputStreamReader(javaClass.classLoader.getResourceAsStream(storageConfig.questionFileName)).use {br ->

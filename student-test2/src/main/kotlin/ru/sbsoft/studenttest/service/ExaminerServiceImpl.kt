@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 import ru.sbsoft.studenttest.config.ExamConfig
 import ru.sbsoft.studenttest.dao.QuestionDao
 import ru.sbsoft.studenttest.domain.Question
+import ru.sbsoft.studenttest.stereotype.LogEnable
 
 @Service
 class ExaminerServiceImpl(private val questionDao: QuestionDao,
@@ -13,6 +14,7 @@ class ExaminerServiceImpl(private val questionDao: QuestionDao,
     private val localeSelectionService: LocaleSelectionService,
     private val examConfig: ExamConfig): ExaminerService {
 
+    @LogEnable
     override fun exam() {
         localeSelectionService.selectLocale()
         var goodAnswerCount = 0
